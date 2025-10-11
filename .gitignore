@@ -1,5 +1,50 @@
+# Python
 __pycache__/
 *.pyc
-.env
-data/
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environment
 .venv/
+venv/
+env/
+
+# Environment Variables
+.env
+.env.local
+
+# Data Files (generated)
+data/raw/
+data/jobs_merged.csv
+data/*_export_*.csv
+data/programming_languages.csv
+data/frameworks.csv
+data/cloud_platforms.csv
+data/databases.csv
+data/tools_technologies.csv
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
