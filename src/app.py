@@ -313,6 +313,8 @@ def main():
             # Get top 15 skills
             top_skills = sorted(filtered_skills.items(), key=lambda x: x[1], reverse=True)[:15]
             skills_df = pd.DataFrame(top_skills, columns=['Skill', 'Count'])
+            # Capitalize first letter
+            skills_df['Skill'] = skills_df['Skill'].str.capitalize()
             
             fig = px.bar(
                 skills_df,
@@ -336,10 +338,12 @@ def main():
         st.markdown("### Jobs by Source")
         
         source_counts = filtered_df['source'].value_counts()
+        # Capitalize source names
+        source_names = [name.replace('_', ' ').title() for name in source_counts.index]
         
         fig = px.pie(
             values=source_counts.values,
-            names=source_counts.index,
+            names=source_names,
             title="Distribution by Source",
             color_discrete_sequence=px.colors.qualitative.Set3
         )
