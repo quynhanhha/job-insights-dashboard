@@ -16,7 +16,6 @@ env/
 
 # Data Files (generated)
 data/raw/
-data/jobs_merged.csv
 data/*_export_*.csv
 data/programming_languages.csv
 data/frameworks.csv
