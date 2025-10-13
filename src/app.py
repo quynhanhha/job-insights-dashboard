@@ -37,7 +37,7 @@ except ImportError:
 # Page config
 st.set_page_config(
     page_title="Job Insights Dashboard",
-    page_icon="💼",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -77,10 +77,10 @@ def load_data():
         df = pd.read_csv("data/jobs_merged.csv")
         return df
     except FileNotFoundError:
-        st.error("❌ data/jobs_merged.csv not found. Please run `python3 -m src.fetch_jobs` first.")
+        st.error("data/jobs_merged.csv not found. Please run `python3 -m src.fetch_jobs` first.")
         return pd.DataFrame()
     except Exception as e:
-        st.error(f"❌ Error loading data: {str(e)}")
+        st.error(f"Error loading data: {str(e)}")
         return pd.DataFrame()
 
 def get_file_timestamp():
@@ -169,7 +169,7 @@ def main():
     # Header
     col1, col2 = st.columns([3, 1])
     with col1:
-        st.markdown('<div class="main-header">💼 Job Insights Dashboard</div>', unsafe_allow_html=True)
+        st.markdown('<div class="main-header">Job Insights Dashboard</div>', unsafe_allow_html=True)
         st.markdown("Explore tech job opportunities and skill trends across Australia")
     with col2:
         last_updated = get_file_timestamp()
@@ -186,13 +186,13 @@ def main():
     df = prepare_data(df)
     
     # Sidebar filters
-    st.sidebar.header("🔍 Filters")
+    st.sidebar.header("Filters")
     
     # Data summary
     st.sidebar.info(f"**Total Dataset:** {len(df)} jobs")
     
     # Reset filters button
-    if st.sidebar.button("🔄 Reset All Filters", use_container_width=True):
+    if st.sidebar.button("Reset All Filters", use_container_width=True):
         st.rerun()
     
     st.sidebar.markdown("---")
@@ -251,11 +251,11 @@ def main():
     
     # Check if filtered data is empty
     if filtered_df.empty:
-        st.warning("⚠️ No jobs match the selected filters. Please adjust your filters.")
+        st.warning("No jobs match the selected filters. Please adjust your filters.")
         st.stop()
     
     # KPI Row
-    st.markdown("### 📊 Key Metrics")
+    st.markdown("### Key Metrics")
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
@@ -307,7 +307,7 @@ def main():
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown("### 💻 Top Skills")
+        st.markdown("### Top Skills")
         
         if filtered_skills:
             # Get top 15 skills
@@ -333,7 +333,7 @@ def main():
             st.info(f"No skills found with at least {min_skill_count} mentions. Try lowering the minimum count.")
     
     with col2:
-        st.markdown("### 📈 Jobs by Source")
+        st.markdown("### Jobs by Source")
         
         source_counts = filtered_df['source'].value_counts()
         
@@ -351,7 +351,7 @@ def main():
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### 🎯 Role Distribution")
+        st.markdown("### Role Distribution")
         
         role_counts = filtered_df['role_category'].value_counts().head(10)
         
@@ -372,7 +372,7 @@ def main():
         st.plotly_chart(fig, use_container_width=True)
     
     with col2:
-        st.markdown("### 🏢 Top Companies")
+        st.markdown("### Top Companies")
         
         company_counts = filtered_df['company'].value_counts().head(10)
         
@@ -393,7 +393,7 @@ def main():
         st.plotly_chart(fig, use_container_width=True)
     
     # Skill Category Breakdown
-    st.markdown("### 🔧 Skills by Category")
+    st.markdown("### Skills by Category")
     
     # Use cached skill data
     col1, col2, col3, col4 = st.columns(4)
@@ -437,19 +437,19 @@ def main():
     st.markdown("---")
     
     # Jobs Table
-    st.markdown("### 📋 Job Listings")
+    st.markdown("### Job Listings")
     
     # Display options
     col1, col2, col3 = st.columns([3, 1, 1])
     with col1:
-        search_query = st.text_input("🔎 Search jobs", placeholder="Enter keywords...")
+        search_query = st.text_input("Search jobs", placeholder="Enter keywords...")
     with col2:
         n_jobs = st.selectbox("Show", options=[10, 25, 50, 100], index=0)
     with col3:
         # Export button
         csv_export = filtered_df.to_csv(index=False).encode('utf-8')
         st.download_button(
-            label="📥 Export",
+            label="Export",
             data=csv_export,
             file_name=f"jobs_export_{datetime.now().strftime('%Y%m%d')}.csv",
             mime="text/csv",
@@ -497,7 +497,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center; color: #666; padding: 1rem;'>
-        <p>💼 Job Insights Dashboard | Data sources: Prosple, Workforce AU</p>
+        <p>Job Insights Dashboard | Data sources: Prosple, Workforce AU</p>
         <p>Built with Streamlit | Last updated: Check data/jobs_merged.csv timestamp</p>
     </div>
     """, unsafe_allow_html=True)
