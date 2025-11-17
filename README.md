@@ -135,21 +135,21 @@ The dashboard will open in your browser at `http://localhost:8501`
 job-insights-dashboard/
 ├── src/
 │   ├── fetch_jobs.py          # Main job fetching orchestrator
-│   ├── analyze.py              # Skill extraction and analysis
-│   ├── app.py                  # Streamlit dashboard application
-│   ├── fetchers/               # Source-specific scrapers
+│   ├── analyze.py             # Skill extraction and analysis
+│   ├── app.py                 # Streamlit dashboard application
+│   ├── fetchers/              # Source-specific scrapers
 │   │   ├── prosple.py
 │   │   ├── workforce_au.py
 │   │   ├── seek.py            # (Currently blocked)
 │   │   ├── indeed.py          # (Currently blocked)
 │   │   ├── jora.py            # (Currently blocked)
 │   │   └── careerone.py       # (Currently blocked)
-│   └── utils/                  # Helper functions
+│   └── utils/                 # Helper functions
 │       ├── normalize.py
 │       └── dedupe.py
 ├── data/
 │   └── jobs_merged.csv        # Deduplicated job listings
-├── requirements.txt            # Python dependencies
+├── requirements.txt           # Python dependencies
 └── README.md
 ```
 
@@ -194,35 +194,11 @@ job-insights-dashboard/
 
 ---
 
-## Roadmap
-
-- [x] Setup repository
-- [x] Fetch job listings from multiple sources
-- [x] Implement Playwright for anti-bot bypass
-- [x] Analyze skill frequencies
-- [x] Build Streamlit dashboard
-- [x] Add filters and search
-- [x] Implement caching for performance
-- [x] Add CSV export functionality
-- [ ] Deploy to Streamlit Cloud
-- [ ] Add scheduling for automatic data refresh
-- [ ] Implement job description scraping
-- [ ] Add salary analysis (if data available)
-- [ ] Email alerts for matching jobs
-
----
-
 ## Performance
 
 - **Caching**: Data preparation and skill extraction are cached for instant filter updates
 - **Load Time**: Initial load ~1-2s, filter changes <0.1s
 - **Scalability**: Handles 1000+ job listings efficiently
-
----
-
-## Contributing
-
-Contributions welcome! Please feel free to submit a Pull Request.
 
 ---
 
@@ -237,9 +213,3 @@ MIT License - see LICENSE file for details
 - Job data sourced from Prosple and Workforce Australia
 - Built with Streamlit and Plotly
 - Web scraping powered by Playwright
-
----
-
-## Contact
-
-For questions or feedback, please open an issue on GitHub.
